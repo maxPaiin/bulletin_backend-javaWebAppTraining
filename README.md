@@ -4,7 +4,7 @@ The project doesn’t use the Spring framework at this stage. Once the core feat
 
 *This project is under progressive development. Features and code will be updated incrementally.*
 
- Technical Notes
+ Technical Notes</br>
 	•	This project is not a standalone application — the database files are not included. However, you can refer to the entity classes in the project and attempt to reconstruct the MySQL database schema.</br>
 	•	External libraries and plugins used are listed in pom.xml.</br>
 	•	The JDBC connection pool is powered by Druid.</br>

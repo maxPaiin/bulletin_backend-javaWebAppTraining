@@ -11,3 +11,5 @@ The project doesn’t use the Spring framework at this stage. Once the core feat
 	•	The project uses the JBLJavaToWeb plugin（IDEA） to convert Java modules into Web modules.</br>
 	•	API testing is done using Postman.</br>
 	•	Utility classes and some core code are adapted from the 2023 JavaWeb course by  尚硅谷(a programming education provider in China). Some modifications were made to fit the current versions of dependencies and specific project needs.
+
+ The corresponding Java frontend can be found here: https://github.com/maxPaiin/bulletin_frontend

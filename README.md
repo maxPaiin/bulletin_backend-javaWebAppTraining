@@ -16,7 +16,7 @@ Checks whether a given login_id is already in use.
 
 3.Token Expiration Validation:</br>
 checkLogin(HttpServletRequest req, HttpServletResponse resp)
-Verifies if the JWT token is still valid.
+Verifies if the token is still valid.
 
 4.User Soft Deletion:</br>
 userDelete(HttpServletRequest req, HttpServletResponse resp)

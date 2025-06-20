@@ -6,4 +6,8 @@ public interface UserService {
     User findByUserloginId(String loginId);
 
     User findByUserId(Integer userId);
+
+    int registUser(User registUser);
+
+    int deleteUser(User user);
 }

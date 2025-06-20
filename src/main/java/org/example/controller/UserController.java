@@ -37,7 +37,7 @@ public class UserController extends BaseController{
               result = Result.build(null, ResultCodeEnum.PASSWORD_ERROR);
            }
        }else{
-           result = Result.build(null,ResultCodeEnum.USERNAME_ERROR);
+           result = Result.build(null,ResultCodeEnum.LGOIN_IDERROR);
        }
        WebUtil.writeJson(resp,result);
     }
@@ -56,6 +56,56 @@ public class UserController extends BaseController{
                     result = Result.ok(data);
                 }
             }
+        }
+        WebUtil.writeJson(resp,result);
+    }
+    // Check if login_id is duplicated
+    protected void checkUserName(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String login_id = req.getParameter("login_id");
+        User user = userService.findByUserloginId(login_id);
+        Result result = null;
+        if(user == null){
+            result = Result.ok(null);
+        }else {
+            result = Result.build(null, ResultCodeEnum.LOGIN_IDUSED);
+        }
+        WebUtil.writeJson(resp,result);
+    }
+
+    // Business interface for handling registratio
+    protected void regist(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+       User registUser = WebUtil.readJson(req,User.class);
+       User user = userService.findByUserloginId(registUser.getLogin_id());
+       Result result = null;
+       if(user == null){
+           userService.registUser(registUser);
+           result = Result.ok(null);
+       }else{
+           result = Result.build(null,ResultCodeEnum.LGOIN_IDERROR);
+       }
+       WebUtil.writeJson(resp,result);
+    }
+
+    // soft delete user
+    protected void userDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user = WebUtil.readJson(req,User.class);
+        Result result = null;
+        User loginUser = userService.findByUserId(user.getUser_id());
+        if(loginUser != null) {
+            userService.deleteUser(user);
+            result = Result.ok(null);
+        }else{
+            result = Result.build(null,ResultCodeEnum.NOTLOGIN);
+        }
+        WebUtil.writeJson(resp,result);
+    }
+
+    //Check whether the token expires
+    protected void checkLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String token = req.getHeader("token");
+        Result result = Result.build(null,ResultCodeEnum.NOTLOGIN);
+        if(token != null && !(JwtHelper.isExpiration(token))) { // Judgment token is not null and has not expired
+            result = Result.ok(null);
         }
         WebUtil.writeJson(resp,result);
     }

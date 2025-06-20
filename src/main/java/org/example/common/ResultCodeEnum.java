@@ -3,10 +3,10 @@ package org.example.common;
 public enum ResultCodeEnum {
 
     SUCCESS(200,"success"),
-    USERNAME_ERROR(501,"usernameError"),
+    LGOIN_IDERROR(501,"login_idError"),
     PASSWORD_ERROR(503,"passwordError"),
     NOTLOGIN(504,"notLogin"),
-    USERNAME_USED(505,"userNameUsed")
+    LOGIN_IDUSED(505,"login_idUsed")
     ;
 
     private Integer code;
